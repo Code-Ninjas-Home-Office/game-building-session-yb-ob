@@ -129,6 +129,8 @@ Design a maze using tiles from the tilemap editor's **Gallery**.
 ![draw walls icon](https://github.com/Code-Ninjas-Home-Office/game-building-session-yb-ob/blob/master/images/tilemap%20draw%20walls%20button.png?raw=true "Draw Walls icon")
 - :mouse pointer: Click **Done** after completing these steps.
 
+![Logo](https://github.com/Code-Ninjas-Home-Office/game-building-session-tutorials-2024/blob/master/images/CN-Logo.png?raw=true "CN Logo") 
+
 ## The Game Window 
 As you add code to your project, look at the Game Window on the **lower right** of your screen to see it update! 
 
@@ -143,6 +145,8 @@ Replace **path** tiles with **start** and **goal** tiles that will serve as a st
 - :tree: Select a different type of tile to replace 1 or 2 path tiles with a tile that will be used as a **starting point** for the Player sprite.
 - :tree: Select another type of tile to replace 1 or 2 path tiles with a tile that will be used as a **goal** for the Player sprite to reach.
 - :mouse pointer: Click **Done** after completing these steps.
+
+![Logo](https://github.com/Code-Ninjas-Home-Office/game-building-session-tutorials-2024/blob/master/images/CN-Logo.png?raw=true "CN Logo") 
 
 ## Add a Player Sprite 
 Create a Player sprite who will navigate through the tilemap maze. 
@@ -465,6 +469,8 @@ Code the **goal** tiles so the Player can win the game!
 - :circle: Open ``||game:Game||`` and drag a ``||game:game over||`` block into the ``||logic:if else||`` container.
 
 Test your game to see what happens when the Player touches a **goal** tile after collecting all the Food sprites!
+
+![Logo](https://github.com/Code-Ninjas-Home-Office/game-building-session-tutorials-2024/blob/master/images/CN-Logo.png?raw=true "CN Logo") 
 
 ```blocks
 scene.onOverlapTile(SpriteKind.Player, assets.tile``, function (sprite, location) {
