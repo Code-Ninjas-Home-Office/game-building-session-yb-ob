@@ -24,13 +24,13 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
     scene.cameraShake(4, 500)
     tiles.placeOnRandomTile(hero, sprites.castle.tileDarkGrass3)
 })
-let enemySprite: Sprite = null
+let witch: Sprite = null
 let coin: Sprite = null
-let mySprite: Sprite = null
+let hero: Sprite = null
 tiles.setCurrentTilemap(tilemap`level1`)
 info.startCountdown(10)
 game.splash("")
-mySprite = sprites.create(img`
+hero = sprites.create(img`
     . . . . . . f f f f . . . . . . 
     . . . . f f f 2 2 f f f . . . . 
     . . . f f f 2 2 2 2 f f f . . . 
@@ -48,9 +48,9 @@ mySprite = sprites.create(img`
     . . . . . f f f f f f . . . . . 
     . . . . . f f . . f f . . . . . 
     `, SpriteKind.Player)
-controller.moveSprite(mySprite)
-tiles.placeOnRandomTile(mySprite, sprites.castle.tileDarkGrass3)
-scene.cameraFollowSprite(mySprite)
+controller.moveSprite(hero)
+tiles.placeOnRandomTile(hero, sprites.castle.tileDarkGrass3)
+scene.cameraFollowSprite(hero)
 for (let index = 0; index < 3; index++) {
     coin = sprites.create(img`
         . . b b b b . . 
@@ -65,7 +65,7 @@ for (let index = 0; index < 3; index++) {
     tiles.placeOnRandomTile(coin, sprites.builtin.brick)
 }
 for (let index = 0; index < 8; index++) {
-    enemySprite = sprites.create(img`
+    witch = sprites.create(img`
         . . . . . . . c c c . . . . . . 
         . . . . . . c b 5 c . . . . . . 
         . . . . c c c 5 5 c c c . . . . 
@@ -83,9 +83,9 @@ for (let index = 0; index < 8; index++) {
         . . . . c b 5 5 5 5 b c . . . . 
         . . . . . f f f f f f . . . . . 
         `, SpriteKind.Enemy)
-    enemySprite.vy = randint(20, 50)
-    enemySprite.setBounceOnWall(true)
-    tiles.placeOnRandomTile(enemySprite, sprites.builtin.brick)
+    witch.vy = randint(20, 50)
+    witch.setBounceOnWall(true)
+    tiles.placeOnRandomTile(witch, sprites.builtin.brick)
 }
 info.setScore(0)
 info.setLife(3)
@@ -107,6 +107,8 @@ Click **Ok** to get started!
 ## Add a tilemap   
 
 A **tilemap** is a game map made up of different squares, or **tiles**, that can be customized to create different types of 2D and top-down perspective games. Today, you will be using a tilemap to create a maze game.
+
+![tilemap image](https://github.com/Code-Ninjas-Home-Office/game-building-session-yb-ob/blob/master/images/tilemap%20image.png?raw=true "tilemap image")
 
 - :tree: Open ``||scene:Scene|`` and drag ``||scene:set tilemap to||`` inside the ``||loops:on start||`` container already on screen. 
 - :mouse pointer: Click the grey square in the block to open the **tilemap editor**. Explore the editor, then click **Done** to return to the tutorial.
@@ -146,15 +148,16 @@ Replace **path** tiles with **start** and **goal** tiles that will serve as a st
 Create a Player sprite who will navigate through the tilemap maze. 
 
 - :paper plane: Open ``||sprites:Sprites||`` and drag the ``||variables(sprites):set mySprite to||`` block to the bottom of the ``||loops: on start||`` container. 
+- :mouse pointer: Click on ``||variables:mySprite||`` to create a new **variable** name for this sprite. 
 - :mouse pointer: Click the gray square and select any image you would like from the **Gallery** of sprite images. 
 - :tree: Open ``||scene:Scene||`` and drag a ``||scene:place mySprite on top of random||`` block to the bottom of the ``||loops:on start||``.
-- :mouse pointer: Click the blank tile image then select your **start** tile from the dropdown.
+- :mouse pointer: Select the sprite name from the dropdown, then click the blank tile image to select your **start** tile from the dropdown.
 
 ![Logo](https://github.com/Code-Ninjas-Home-Office/game-building-session-tutorials-2024/blob/master/images/CN-Logo.png?raw=true "CN Logo") 
 
 ```blocks
 tiles.setCurrentTilemap(tilemap``)
-let mySprite = sprites.create(img`
+let hero = sprites.create(img`
     . . . . . . f f f f . . . . . . 
     . . . . f f f 2 2 f f f . . . . 
     . . . f f f 2 2 2 2 f f f . . . 
@@ -172,22 +175,24 @@ let mySprite = sprites.create(img`
     . . . . . f f f f f f . . . . . 
     . . . . . f f . . f f . . . . . 
     `, SpriteKind.Player)
-tiles.placeOnRandomTile(mySprite, assets.tile``)
+tiles.placeOnRandomTile(hero, assets.tile``)
 ```
 
 ## Let's Get Moving 
 Code the sprite to move around the screen.
 
-- :game controller: Open ``||controller:Controller||`` and drag ``||controller:move mySprite with buttons||`` block to the bottom of the ``||loops:on start||``. 
-- :tree: Open ``||scene:Scene||`` and drag ``||scene:camera follow sprite||`` below it.
+- :game controller: Open ``||controller:Controller||`` and drag ``||controller:move mySprite with buttons||`` block to the bottom of the ``||loops:on start||``. Update the sprite name.
+- :tree: Open ``||scene:Scene||`` and drag ``||scene:camera follow sprite||`` below it. Update the sprite name.
 
-Try it out: use the **arrow keys** or **WASD** to move the sprite around the screen. Notice how the camera follows the sprite as it navigates the tilemap.
+Try it out: use the **arrow keys** or **WASD** to move the sprite around the tilemap in the on-screen game simulator.
+
+Notice how the camera follows the sprite as it navigates the tilemap, and how the tiles set as **walls** block the sprite's movement on those tiles.
 
 ![Logo](https://github.com/Code-Ninjas-Home-Office/game-building-session-tutorials-2024/blob/master/images/CN-Logo.png?raw=true "CN Logo") 
 
 ```blocks
 tiles.setCurrentTilemap(tilemap``)
-let mySprite = sprites.create(img`
+let hero = sprites.create(img`
     . . . . . . f f f f . . . . . . 
     . . . . f f f 2 2 f f f . . . . 
     . . . f f f 2 2 2 2 f f f . . . 
@@ -205,27 +210,27 @@ let mySprite = sprites.create(img`
     . . . . . f f f f f f . . . . . 
     . . . . . f f . . f f . . . . . 
     `, SpriteKind.Player)
-tiles.placeOnRandomTile(mySprite, assets.tile``)
-controller.moveSprite(mySprite)
-scene.cameraFollowSprite(mySprite)
+tiles.placeOnRandomTile(hero, assets.tile``)
+controller.moveSprite(hero)
+scene.cameraFollowSprite(hero)
 ```
 
 ## Add Something to Collect
-Add multiple objects for the Player sprite to collect as it navigates the maze.
+Add multiple objects, or **Food** sprites, for the Player sprite to collect as it navigates the maze.
 
 - :repeat: Open ``||loops:Loops||`` and drag a ``||loops:repeat||`` block into the bottom of the ``||loops:on start||`` container.
-- :paper plane: Add a ``||variables(sprites):set mySprite to||`` block inside the ``||loops:repeat||``. Click the gray square to select an image from the **Gallery**.
-- :mouse pointer: Click on ``||variables:mySprite||`` to create a new **variable** name for this sprite. 
+- :paper plane: Add a ``||variables(sprites):set mySprite to||`` block inside the ``||loops:repeat||``.
+- :mouse pointer: Click on ``||variables:mySprite||`` to create a new **variable** name for this sprite. Click the gray square to select an image from the **Gallery**.
 - :mouse pointer: Click on ``||sprites:Player||`` to change the **Sprite Kind** from Player to **Food**. 
-- :tree: Add a ``||scene:place mySprite on top of random||`` block inside the ``||loops:repeat||``. Change ``||variables:mySprite||`` to the new sprite variable name, and select the **path** tile from the dropdown.
+- :tree: Add a ``||scene:place mySprite on top of random||`` block inside the ``||loops:repeat||``. Update the sprite name, and select the **path** tile from the dropdown.
 
-Explore the tilemap to look for the collectible sprites. Adjust the number in the ``||loops:repeat||`` to create more or less collectible objects.
+Explore the tilemap in the game simulator to look for the Food sprites. Adjust the number in the ``||loops:repeat||`` to create more or less Food sprites.
 
 ![Logo](https://github.com/Code-Ninjas-Home-Office/game-building-session-tutorials-2024/blob/master/images/CN-Logo.png?raw=true "CN Logo") 
 
 ```blocks
 tiles.setCurrentTilemap(tilemap``)
-let mySprite = sprites.create(img`
+let hero = sprites.create(img`
     . . . . . . f f f f . . . . . . 
     . . . . f f f 2 2 f f f . . . . 
     . . . f f f 2 2 2 2 f f f . . . 
@@ -243,9 +248,9 @@ let mySprite = sprites.create(img`
     . . . . . f f f f f f . . . . . 
     . . . . . f f . . f f . . . . . 
     `, SpriteKind.Player)
-tiles.placeOnRandomTile(mySprite, assets.tile``)
-controller.moveSprite(mySprite)
-scene.cameraFollowSprite(mySprite)
+tiles.placeOnRandomTile(hero, assets.tile``)
+controller.moveSprite(hero)
+scene.cameraFollowSprite(hero)
 for (let index = 0; index < 3; index++) {
     let coin = sprites.create(img`
         . . b b b b . . 
@@ -262,14 +267,14 @@ for (let index = 0; index < 3; index++) {
 ```
 
 ## Keep Track of the Score!
-Increase the score and destroy the collectible sprite when the Player overlaps it.
+Increase the score and destroy the Food sprite when the Player overlaps it.
 
 - :paper plane: Open ``||sprites:Sprites||`` and drag out a ``||sprites:on sprite overlaps||`` container and place it anywhere in the editor. Change the second ``||sprites:Player||`` to ``||sprites:Food||``.
 - :paper plane: Open ``||sprites:Sprites||`` and drag a ``||sprites:destroy||`` block into the ``||sprites:overlap||`` container.
 - :mouse pointer: Drag the ``||variables:otherSprite||`` oval from the ``||sprites:overlap||`` container into the ``||sprites:destroy||`` block.
 - :id card: From ``||info:Info||``, drag a ``||info:set score||`` block into the ``||loops:on start||`` and a ``||info:change score||`` block into the ``||sprites:overlap||``.
 
-Test your game: do the Food sprites disappear and the score increases, as expected?
+Test your game: when the Player sprite overlaps a Food sprite, does the Food sprite disappear and the score increase?
 
 ![Logo](https://github.com/Code-Ninjas-Home-Office/game-building-session-tutorials-2024/blob/master/images/CN-Logo.png?raw=true "CN Logo") 
 
@@ -296,7 +301,7 @@ Test your game. Adjust the number in the ``||loops:repeat||`` to create more or 
 ```blocks
 info.setScore(0)
 tiles.setCurrentTilemap(tilemap``)
-let mySprite = sprites.create(img`
+let hero = sprites.create(img`
     . . . . . . f f f f . . . . . . 
     . . . . f f f 2 2 f f f . . . . 
     . . . f f f 2 2 2 2 f f f . . . 
@@ -314,9 +319,9 @@ let mySprite = sprites.create(img`
     . . . . . f f f f f f . . . . . 
     . . . . . f f . . f f . . . . . 
     `, SpriteKind.Player)
-tiles.placeOnRandomTile(mySprite, assets.tile``)
-controller.moveSprite(mySprite)
-scene.cameraFollowSprite(mySprite)
+tiles.placeOnRandomTile(hero, assets.tile``)
+controller.moveSprite(hero)
+scene.cameraFollowSprite(hero)
 for (let index = 0; index < 3; index++) {
     let coin = sprites.create(img`
         . . b b b b . . 
@@ -331,7 +336,7 @@ for (let index = 0; index < 3; index++) {
     tiles.placeOnRandomTile(coin, assets.tile``)
 }
 for (let index = 0; index < 8; index++) {
-    let enemySprite = sprites.create(img`
+    let witch = sprites.create(img`
         . . . . . . . c c c . . . . . . 
         . . . . . . c b 5 c . . . . . . 
         . . . . c c c 5 5 c c c . . . . 
@@ -349,7 +354,7 @@ for (let index = 0; index < 8; index++) {
         . . . . c b 5 5 5 5 b c . . . . 
         . . . . . f f f f f f . . . . . 
         `, SpriteKind.Enemy)
-    tiles.placeOnRandomTile(enemySprite, assets.tile``)
+    tiles.placeOnRandomTile(witch, assets.tile``)
 }
 ``` 
 
@@ -367,7 +372,7 @@ Test your game. Adjust the **vy** speed as needed; change **vy** to **vx** if le
 ```blocks
 info.setScore(0)
 tiles.setCurrentTilemap(tilemap``)
-let mySprite = sprites.create(img`
+let hero = sprites.create(img`
     . . . . . . f f f f . . . . . . 
     . . . . f f f 2 2 f f f . . . . 
     . . . f f f 2 2 2 2 f f f . . . 
@@ -385,9 +390,9 @@ let mySprite = sprites.create(img`
     . . . . . f f f f f f . . . . . 
     . . . . . f f . . f f . . . . . 
     `, SpriteKind.Player)
-tiles.placeOnRandomTile(mySprite, assets.tile``)
-controller.moveSprite(mySprite)
-scene.cameraFollowSprite(mySprite)
+tiles.placeOnRandomTile(hero, assets.tile``)
+controller.moveSprite(hero)
+scene.cameraFollowSprite(hero)
 for (let index = 0; index < 3; index++) {
     let coin = sprites.create(img`
         . . b b b b . . 
@@ -402,7 +407,7 @@ for (let index = 0; index < 3; index++) {
     tiles.placeOnRandomTile(coin, assets.tile``)
 }
 for (let index = 0; index < 8; index++) {
-    let enemySprite = sprites.create(img`
+    let witch = sprites.create(img`
         . . . . . . . c c c . . . . . . 
         . . . . . . c b 5 c . . . . . . 
         . . . . c c c 5 5 c c c . . . . 
@@ -420,22 +425,22 @@ for (let index = 0; index < 8; index++) {
         . . . . c b 5 5 5 5 b c . . . . 
         . . . . . f f f f f f . . . . . 
         `, SpriteKind.Enemy)
-    tiles.placeOnRandomTile(enemySprite, assets.tile``)
-    enemySprite.vy = randint(20, 50)
-    enemySprite.setBounceOnWall(true)
+    tiles.placeOnRandomTile(witch, assets.tile``)
+    witch.vy = randint(20, 50)
+    witch.setBounceOnWall(true)
 }
 ```
 
 ## Don't Lose a Life!
-Decrease the Player's life and destroy the Enemy when the sprites overlap.
+Decrease the Player's lives and destroy the Enemy when the sprites overlap.
 
 - :paper plane: Open ``||sprites:Sprites||`` and drag out a ``||sprites:on sprite overlaps||`` container. Change the second ``||sprites:Player||`` to ``||sprites:Enemy||``.
 - :paper plane: Open ``||sprites:Sprites||`` and drag a ``||sprites:destroy||`` block into the ``||sprites:overlap||`` container.
 - :mouse pointer: Drag the ``||variables:otherSprite||`` oval from the ``||sprites:overlap||`` container into the ``||sprites:destroy||`` block.
 - :id card: From ``||info:Info||``, drag a ``||info:set life||`` block into the ``||loops:on start||`` and a ``||info:change life||`` block into the ``||sprites:overlap||``.
-- :tree: From ``||scene:Scene||``, use a ``||scene:place mySprite on top of random||`` to set the Player sprite back to a **start** tile. Then use a ``||scene:camera shake||`` block to create a screen shaking effect.
+- :tree: From ``||scene:Scene||``, use a ``||scene:place mySprite on top of random||`` to set the Player sprite back to a **start** tile and a ``||scene:camera shake||`` block to create a screen shaking effect.
 
-Test your game: do the Enemy sprites disappear and the lives decrease, as expected?
+Test your game: when the Player sprite overlaps an Enemy sprite, does the Enemy sprite disappear and the lives decrease?
 
 ![Logo](https://github.com/Code-Ninjas-Home-Office/game-building-session-tutorials-2024/blob/master/images/CN-Logo.png?raw=true "CN Logo") 
 
@@ -459,7 +464,7 @@ Code the **goal** tiles so the Player can win the game!
 - :id card: Open ``||info:Info||`` and drag a ``||info:score||`` oval into the left side of the ``||logic:<0=0>||`` block. On the right side, replace **0** with the number of Food sprites used in your game.
 - :circle: Open ``||game:Game||`` and drag a ``||game:game over||`` block into the ``||logic:if else||`` container.
 
-Test your game to see what happens when the Player touches a **goal** tile!
+Test your game to see what happens when the Player touches a **goal** tile after collecting all the Food sprites!
 
 ```blocks
 scene.onOverlapTile(SpriteKind.Player, assets.tile``, function (sprite, location) {
@@ -472,11 +477,11 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile``, function (sprite, location
 ## Add the finishing touches!
 Here are a few additional things you can add to your maze game:
 
-- :tree: Add a **hazard** tile! Replace some of the **path** tiles with a new tile, then use a ``||scene:on sprite overlaps tile||`` container to make something happen when the Player sprite overlaps a hazard.
+- :tree: Add a **hazard** tile! Replace some of the **path** tiles with a new tile, then use an ``||scene:on sprite overlaps tile||`` container to make something happen when the Player sprite overlaps a hazard.
 - :circle: Use ``||game:splash||`` or ``||game:show long text||`` blocks to add game instructions.
 - :headphones: Use a ``||music:play sound||`` block to add sound effects for even more fun!
-- :paint brush: Customize the sprites and background to your liking.
-- :id card: Use a ``||info:start countdown||`` timer to challenge the user to solve the riddle in a certain amount of time.
+- :paint brush: Customize the sprites and tilemap to your liking.
+- :id card: Use a ``||info:start countdown||`` timer to challenge the user to finish the maze in a certain amount of time.
 
 When you have finished, click **Done**. Then, follow your Code Sensei's guidance to create a shareable link that will let you play your game at home!
 
