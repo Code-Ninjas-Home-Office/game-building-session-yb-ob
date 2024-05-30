@@ -4,10 +4,7 @@
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile`, function (sprite, location) {
     if (info.score() == 3) {
         game.gameOver(true)
-    } else {
-        game.showLongText("You need more coins!", DialogLayout.Center)
     }
-    pause(1000)
 })
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.hazardWater, function (sprite, location) {
     sprites.destroy(sprite)
@@ -272,7 +269,7 @@ Increase the score and destroy the collectible sprite when the Player overlaps i
 - :mouse pointer: Drag the ``||variables:otherSprite||`` oval from the ``||sprites:overlap||`` container into the ``||sprites:destroy||`` block.
 - :id card: From ``||info:Info||``, drag a ``||info:set score||`` block into the ``||loops:on start||`` and a ``||info:change score||`` block into the ``||sprites:overlap||``.
 
-Test your game: do the Food sprites disappear and the score increase, as expected?
+Test your game: do the Food sprites disappear and the score increases, as expected?
 
 ![Logo](https://github.com/Code-Ninjas-Home-Office/game-building-session-tutorials-2024/blob/master/images/CN-Logo.png?raw=true "CN Logo") 
 
@@ -457,12 +454,10 @@ info.setLife(3)
 Code the **goal** tiles so the Player can win the game!
 
 - :tree: Open ``||scene:Scene||`` and drag out an ``||scene:on sprite overlaps tile||`` container. Select the **goal** tile from the tile dropdown.
-- :shuffle: Open ``||logic:Logic||`` and drag an ``||logic:if else||`` container into the ``||scene:overlap||`` container.
+- :shuffle: Open ``||logic:Logic||`` and drag an ``||logic:if||`` container into the ``||scene:overlap||`` container.
 - :shuffle: Replace ``||logic:<true>||`` with a ``||logic:<0=0>||`` block.
 - :id card: Open ``||info:Info||`` and drag a ``||info:score||`` oval into the left side of the ``||logic:<0=0>||`` block. On the right side, replace **0** with the number of Food sprites used in your game.
-- :circle: Open ``||game:Game||`` and drag a ``||game:game over||`` block into the **if** part of the ``||logic:if else||`` container.
-- :circle: Open ``||game:Game||`` again and drag a ``||game:show long text||`` block into the **else** part of the ``||logic:if else||`` container. Add a message to tell the player to collect all of the Food sprites.
-- :repeat: Open ``||loops:Loops||`` and drag a ``||loops:pause||`` block below the ``||logic:if else||`` container to pause the overlap event from running immediately.
+- :circle: Open ``||game:Game||`` and drag a ``||game:game over||`` block into the ``||logic:if else||`` container.
 
 Test your game to see what happens when the Player touches a **goal** tile!
 
@@ -470,10 +465,7 @@ Test your game to see what happens when the Player touches a **goal** tile!
 scene.onOverlapTile(SpriteKind.Player, assets.tile``, function (sprite, location) {
     if (info.score() == 3) {
         game.gameOver(true)
-    } else {
-        game.showLongText("You need more coins!", DialogLayout.Center)
     }
-    pause(1000)
 })
 ```
 
