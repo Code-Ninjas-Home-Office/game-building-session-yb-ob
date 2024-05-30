@@ -100,7 +100,7 @@ In this tutorial, you will explore an activity similar to what you might find in
 
 Click **Ok** to get started! 
 
-![Game Example](https://github.com/Code-Ninjas-Home-Office/game-building-session-yb-ob/blob/master/images/GBSYBProject.gif?raw=true "Ninja Riddle Quest project") 
+![Game Example](https://github.com/Code-Ninjas-Home-Office/game-building-session-yb-ob/blob/master/images/GBSYBProject.gif?raw=true "Tilemap Maze project") 
 
 ![Logo](https://github.com/Code-Ninjas-Home-Office/game-building-session-tutorials-2024/blob/master/images/CN-Logo.png?raw=true "CN Logo") 
  
