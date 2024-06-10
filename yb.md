@@ -466,7 +466,7 @@ Code the **goal** tiles so the Player can win the game!
 - :shuffle: Open ``||logic:Logic||`` and drag an ``||logic:if||`` container into the ``||scene:overlap||`` container.
 - :shuffle: Replace ``||logic:<true>||`` with a ``||logic:<0=0>||`` block.
 - :id card: Open ``||info:Info||`` and drag a ``||info:score||`` oval into the left side of the ``||logic:<0=0>||`` block. On the right side, replace **0** with the number of Food sprites used in your game.
-- :circle: Open ``||game:Game||`` and drag a ``||game:game over||`` block into the ``||logic:if else||`` container.
+- :circle: Open ``||game:Game||`` and drag a ``||game:game over||`` block into the ``||logic:if||`` container.
 
 Test your game to see what happens when the Player touches a **goal** tile after collecting all the Food sprites!
 
