@@ -23,7 +23,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
 ## Introduction @showdialog 
 **Orange Belt Game Building Session**
 
-In this tutorial, you will explore an activity similar to what you might find at the beginning of Code Ninjas' Orange Belt curriculum, which focuses on using coding skills learned in White and Yellow belt to code with JavaScript in MakeCode Arcade.
+In this tutorial, you will explore an activity similar to what you might find at the beginning of Code Ninjas' Orange Belt curriculum, which focuses on using coding skills learned in the White and Yellow belts to code with JavaScript in MakeCode Arcade.
 
 Click **Ok** to get started! 
 
@@ -48,6 +48,8 @@ All good games need a background.
 
 - :tree: Open ``||scene:Scene||`` and drag ``||scene:set background image to||`` into the code editor on line 2. 
 - :mouse pointer: Click the palette and select **beachBackground** from **My Assets**.
+
+Click ▶ to see the background appear on screen!
 
 ![Logo](https://github.com/Code-Ninjas-Home-Office/game-building-session-tutorials-2024/blob/master/images/CN-Logo.png?raw=true "CN Logo") 
 
@@ -132,7 +134,7 @@ coconut.setBounceOnWall(true)
 ## Infinite Coconuts!
 So far, we only have one Food sprite spawning in our game! To fix this, we are going to call the code repeatedly using an **interval loop**.
 
-- :keyboard: Add the code `game.onUpdateInterval(1500, function() { })` using the code completion tool for assistance.
+- :keyboard: Add the code `game.onUpdateInterval(1500, function() { })` using the code completion tool for assistance. Be sure to use **1500** as the time parameter.
 - :keyboard: Highlight then cut the 4 lines of code for the Food sprite, then paste it in between the interval loop's curly brackets `{}`.
 
 The coconuts will now spawn every 1500 milliseconds (1.5 seconds)!
@@ -207,8 +209,8 @@ Test the game to ensure everything is working as expected!
 
 ```typescript
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
-    otherSprite.vy = randint(-100, -80)
     otherSprite.ay = 0
+    otherSprite.vy = randint(-100, -80)
     info.changeScoreBy(2)
 })
 ```
